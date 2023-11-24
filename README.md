@@ -1,5 +1,5 @@
 
-# Scala Project Overview
+# Cops and Robbers game on a Graph with Docker file
 Alessandro Martinolli  
 E-mail: [amart409@uic.edu](amart409@uic.edu)  
 Video: [https://www.youtube.com/watch?v=mebyjbLfVQo](https://www.youtube.com/watch?v=mebyjbLfVQo)
