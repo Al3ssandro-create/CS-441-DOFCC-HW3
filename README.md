@@ -39,11 +39,16 @@ sbt run //run the webserver
 sbt "runMain CombinedClientApp" //to run the automatic client make sure to create a new sbt server
 ```
 
-
 Compile and test the program using SBT
 ```sh
 sbt clean test
 ```
+Another option to run the program is to use docker. To do so make sure to have docker installed on your machine and run the following commands:
+```sh
+docker build -t name-of-your-app .
+docker run -p 8080:8080 name-of-your-app
+```
+make sure also to change the ip address in the Server/Webserver.scala file to the ip address of your docker container (0.0.0.0).
 ## Structure
 
 - **CombinedClientApp.scala:** Main entry for client application.

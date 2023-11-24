@@ -13,7 +13,8 @@ object WebServer {
     implicit val system: ActorSystem = ActorSystem("policeman-thief-game")
     implicit val executionContext: ExecutionContextExecutor = system.dispatcher
     val gameStateActor = system.actorOf(Props[GameStateActor], "gameStateActor")
-    Http().newServerAt("localhost", 8080)
+    //below here put to 0.0.0.0 for running with docker or on localhost for running locally
+    Http().newServerAt("0.0.0.0", 8080)
       .bindFlow(Routes.apply(gameStateActor))
     println("Server online at http://localhost:8080/")
   }
