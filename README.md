@@ -3,6 +3,8 @@
 Alessandro Martinolli  
 E-mail: [amart409@uic.edu](amart409@uic.edu)  
 Video: [https://www.youtube.com/watch?v=mebyjbLfVQo](https://www.youtube.com/watch?v=mebyjbLfVQo)
+   
+   
    This document offers a detailed overview of the classes and objects defined in the Scala project.
 ## Features
 - All the base features of the game are implemented.
