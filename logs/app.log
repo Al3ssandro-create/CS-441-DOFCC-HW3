@@ -1,0 +1,35 @@
+2023-11-23 23:41:01 INFO  Slf4jLogger:107 - Slf4jLogger started
+2023-11-23 23:41:01 INFO  GraphReader$:17 - Attempting to read from path: input/transformedGraph.json
+2023-11-23 23:41:02 INFO  GraphReader$:17 - Attempting to read from path: input/transformedGraph.perturbed.json
+2023-11-23 23:41:25 INFO  Slf4jLogger:107 - Slf4jLogger started
+2023-11-23 23:41:25 INFO  GraphReader$:17 - Attempting to read from path: input/transformedGraph.json
+2023-11-23 23:41:26 INFO  GraphReader$:17 - Attempting to read from path: input/transformedGraph.perturbed.json
+2023-11-23 23:41:36 INFO  GameState$:26 - Player with sessionID: 67890 attempting to connect as Policeman
+2023-11-23 23:41:36 INFO  GameState$:26 - Player with sessionID: 12345 attempting to connect as Thief
+2023-11-23 23:41:40 INFO  GameState$:14 - Starting game session for sessionID: start
+2023-11-23 23:41:40 INFO  GameState$:29 - Starting game with initial state
+2023-11-23 23:41:46 INFO  GameState$:59 - Player 12345 making a move to 218
+2023-11-23 23:41:46 INFO  GameState$:68 - Player 12345 attempting to move to 218
+2023-11-23 23:41:52 INFO  GameState$:59 - Player 67890 making a move to 181
+2023-11-23 23:41:52 INFO  GameState$:68 - Player 67890 attempting to move to 181
+2023-11-23 23:42:00 INFO  GameState$:59 - Player 12345 making a move to 400
+2023-11-23 23:42:00 INFO  GameState$:68 - Player 12345 attempting to move to 400
+2023-11-23 23:42:06 INFO  GameState$:59 - Player 67890 making a move to 245
+2023-11-23 23:42:06 INFO  GameState$:68 - Player 67890 attempting to move to 245
+2023-11-23 23:42:14 INFO  GameState$:59 - Player 12345 making a move to 585
+2023-11-23 23:42:14 INFO  GameState$:68 - Player 12345 attempting to move to 585
+2023-11-23 23:42:20 INFO  GameState$:59 - Player 67890 making a move to 574
+2023-11-23 23:42:20 INFO  GameState$:68 - Player 67890 attempting to move to 574
+2023-11-23 23:42:28 INFO  GameState$:59 - Player 12345 making a move to 156
+2023-11-23 23:42:28 INFO  GameState$:68 - Player 12345 attempting to move to 156
+2023-11-23 23:42:34 INFO  GameState$:59 - Player 67890 making a move to 291
+2023-11-23 23:42:34 INFO  GameState$:68 - Player 67890 attempting to move to 291
+2023-11-23 23:42:42 INFO  GameState$:59 - Player 12345 making a move to 472
+2023-11-23 23:42:42 INFO  GameState$:68 - Player 12345 attempting to move to 472
+2023-11-23 23:42:48 INFO  GameState$:59 - Player 67890 making a move to 553
+2023-11-23 23:42:48 INFO  GameState$:68 - Player 67890 attempting to move to 553
+2023-11-23 23:53:24 INFO  GraphReader$:17 - Attempting to read from path: input/transformedGraph.json
+2023-11-23 23:53:24 INFO  GraphReader$:17 - Attempting to read from path: input/transformedGraph.perturbed.json
+2023-11-23 23:53:25 INFO  GameState$:28 - Starting game with initial state
+2023-11-23 23:56:10 INFO  GraphReader$:17 - Attempting to read from path: input/transformedGraph.json
+2023-11-23 23:56:11 INFO  GraphReader$:17 - Attempting to read from path: input/transformedGraph.perturbed.json

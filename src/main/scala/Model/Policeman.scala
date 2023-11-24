@@ -4,18 +4,8 @@ import Controllers.GameState
 
 class Policeman extends Player {
   override def move(gameState: GameState): GameState = {
-    val thiefPosition = gameState.thiefPosition
-    val policemanCurrentPosition = gameState.policemanPosition
-    val thiefNeighbors = gameState.nodes(thiefPosition).neighbors
-
-    val newPolicemanPosition = if (thiefNeighbors.contains(policemanCurrentPosition)) {
-      // Policeman catches the Thief
-      thiefPosition
-    } else {
-      // Move towards one of the Thief's neighbors, if possible
-      thiefNeighbors.headOption.getOrElse(policemanCurrentPosition)
-    }
-
-    gameState.copy(policemanPosition = newPolicemanPosition)
+    val (list1,list2,score1,score2) = GameState.neighbours(gameState)
+    val moveTo = list1.head
+    GameState.makeMove(gameState, "67890", moveTo)
   }
 }

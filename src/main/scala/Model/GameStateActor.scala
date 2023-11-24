@@ -1,25 +1,29 @@
 package Model
 
 import Controllers.GameState
-import GraphManager.GraphReader
-import Messages.{FailureMessage, SuccessMessage}
+import Messages._
 import akka.actor.Actor
-import com.typesafe.config.{Config, ConfigFactory}
+import com.google.common.graph.GraphBuilder
+import org.slf4j.LoggerFactory
 
 class GameStateActor extends Actor {
-  private var state: GameState = GameState(Map.empty, 0, 0, Map.empty, None)
-  private val config: Config = ConfigFactory.load("App")
-  private val dir: String = config.getString("App.graph.dir")
-  private val n_path: String = config.getString("App.graph.normal")
-  private val p_path: String = config.getString("App.graph.perturbed")
-  val n_graph = GraphReader.initialize(s"$dir$n_path")
-  println(s"the n_graph is $n_graph")
-  val p_graph = GraphReader.initialize(s"$dir$p_path")
-  println(s"the p_graph is $p_graph")
-
+  private val logger = LoggerFactory.getLogger(GameState.getClass)
+  private var state: GameState = GameState(GraphBuilder.directed().build[Int](),GraphBuilder.directed().build[Int](), List.empty, 0, 0, Map.empty)
   def receive: Receive = {
+    case Start(sessionID: String) =>
+      logger.info(s"Starting game session for sessionID: $sessionID")
+      val replyTo = sender()
+      if (state.sessions.size == 2) {
+        logger.debug("Enough players to start the game, initializing game state")
+        state = GameState.start(state)
+        val (list1,list2,score1,score2) = GameState.neighbours(state)
+        replyTo ! NeighbourMessage(state.policemanPosition,state.thiefPosition,list1,list2,score1,score2)
+      } else {
+        logger.warn("Not enough players to start the game")
+        replyTo ! FailureMessage("Not enough players to start the game")
+      }
     case Connect(sessionId, role) =>
-      println(state.sessions.size)
+      logger.info(s"Player with sessionID: $sessionId attempting to connect as $role")
       val replyTo = sender()
       if (state.sessions.size < 2) {
         if (isValidRole(role) && !roleExists(state, role)) {
@@ -29,8 +33,6 @@ class GameStateActor extends Actor {
           } else {
             state = updatedState
             replyTo ! SuccessMessage(role)
-            println(s"the updatedState is $updatedState")
-            println(s"the state is $state")
           }
         } else if (!isValidRole(role)) {
           replyTo ! FailureMessage(s"Role $role is not valid")
@@ -40,19 +42,38 @@ class GameStateActor extends Actor {
       } else {
         replyTo ! FailureMessage("Server is full")
       }
-    case Disconnect(sessionId) =>
-      if (state.sessions.contains(sessionId)) {
-        // Remove the player with the given sessionId
-        val updatedState = state.copy(sessions = state.sessions - sessionId)
-        state = updatedState
-        sender() ! s"Player $sessionId disconnected"
-      } else {
-        sender() ! s"No player found with sessionId: $sessionId"
+    case Check(sessionId) =>
+      logger.debug(s"Checking game status for sessionID: $sessionId")
+      val replyTo = sender()
+      val status = GameState.checkGameStatus(state)
+      if(status == "Policeman wins!" || status == "Thief wins!"){
+        replyTo ! WinMessage(status)
+      }else if(status == "Game Over"){
+        replyTo ! LoseMessage(status)
+      }else{
+        replyTo ! ContinueMessage(status)
       }
     case MakeMove(sessionId, moveTo) =>
+      logger.info(s"Player $sessionId making a move to $moveTo")
       val updatedState = GameState.makeMove(state, sessionId, moveTo)
       state = updatedState
-      sender() ! GameState.checkGameStatus(updatedState)
+      val (list1, list2, score1, score2) = GameState.neighbours(state)
+      sender() ! NeighbourMessage(state.policemanPosition, state.thiefPosition, list1, list2, score1, score2)
+    case Hint(sessionId) =>
+      logger.debug(s"Generating a hint for sessionID: $sessionId")
+      val replyTo = sender()
+      if(state.sessions.size==2) {
+        val hint = GameState.hint(sessionId, state)
+        hint match {
+          case Some(value) =>  replyTo ! HintMessage(value.toString)
+          case None => replyTo ! FailureMessage("No hint available")
+        }
+      }else{
+        replyTo ! FailureMessage("Game Not Started")
+      }
+
+
+
   }
 
   private def isValidRole(role: String): Boolean = {
