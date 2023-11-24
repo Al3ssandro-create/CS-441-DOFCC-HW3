@@ -15,8 +15,8 @@ compileOrder := CompileOrder.JavaThenScala
 test / fork := true
 run / fork := true
 run / javaOptions ++= Seq(
-  "-Xms2G",
-  "-Xmx8G",
+  "-Xms8G",
+  "-Xmx100G",
   "-XX:+UseG1GC"
 )
 Compile / mainClass := Some("Server.WebServer")
