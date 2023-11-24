@@ -33,3 +33,14 @@
 2023-11-23 23:53:25 INFO  GameState$:28 - Starting game with initial state
 2023-11-23 23:56:10 INFO  GraphReader$:17 - Attempting to read from path: input/transformedGraph.json
 2023-11-23 23:56:11 INFO  GraphReader$:17 - Attempting to read from path: input/transformedGraph.perturbed.json
+2023-11-24 00:05:15 INFO  Slf4jLogger:107 - Slf4jLogger started
+2023-11-24 00:05:16 INFO  GraphReader$:17 - Attempting to read from path: input/transformedGraph.json
+2023-11-24 00:05:16 INFO  GraphReader$:17 - Attempting to read from path: input/transformedGraph.perturbed.json
+2023-11-24 00:13:58 INFO  GameState$:26 - Player with sessionID: 67890 attempting to connect as Policeman
+2023-11-24 00:13:58 INFO  GameState$:26 - Player with sessionID: 12345 attempting to connect as Thief
+2023-11-24 00:14:02 INFO  GameState$:14 - Starting game session for sessionID: start
+2023-11-24 00:14:02 INFO  GameState$:28 - Starting game with initial state
+2023-11-24 00:14:08 INFO  GameState$:57 - Player 12345 making a move to 218
+2023-11-24 00:14:08 INFO  GameState$:67 - Player 12345 attempting to move to 218
+2023-11-24 00:25:19 INFO  GraphReader$:17 - Attempting to read from path: input/transformedGraph.json
+2023-11-24 00:25:20 INFO  GraphReader$:17 - Attempting to read from path: input/transformedGraph.perturbed.json

@@ -1,5 +1,7 @@
-ThisBuild / version := "0.1.0-SNAPSHOT"
 
+ThisBuild / version := "0.1.0-SNAPSHOT"
+Global / excludeLintKeys +=   test / fork
+Global / excludeLintKeys += run / mainClass
 ThisBuild / scalaVersion := "2.13.12"
 
 lazy val root = (project in file("."))
@@ -9,7 +11,24 @@ lazy val root = (project in file("."))
 resolvers ++= Seq(
   "Akka Snapshot Repository" at "https://repo.akka.io/snapshots/"
 )
-
+compileOrder := CompileOrder.JavaThenScala
+test / fork := true
+run / fork := true
+run / javaOptions ++= Seq(
+  "-Xms8G",
+  "-Xmx100G",
+  "-XX:+UseG1GC"
+)
+Compile / mainClass := Some("Server.WebServer")
+run / mainClass := Some("Server.WebServer")
+assembly / mainClass := Some("Server.WebServer")
+val jarName = "PolicevsThief.jar"
+assembly/assemblyJarName := jarName
+ThisBuild / assemblyMergeStrategy := {
+  case PathList("META-INF", _*) => MergeStrategy.discard
+  case "application.conf" => MergeStrategy.concat
+  case _ => MergeStrategy.first
+}
 libraryDependencies ++= Seq(
   // Akka HTTP for RESTful service
   "com.typesafe.akka" %% "akka-http" % "10.5.0", // replace with the latest version
