@@ -34,7 +34,6 @@ sbt assembly
 ```
 ## Usage
 
-To run the application, submit the job to Spark using the `spark-submit` command:
 
 ```sh
 sbt run //run the webserver
