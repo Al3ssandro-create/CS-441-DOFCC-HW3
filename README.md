@@ -18,7 +18,7 @@ This Scala project provides a raw implemntation of a distributed game of cops an
 
 ## Installation
 
-To set up the project, clone the repository to your local machine or server where Spark is installed:
+To set up the project, clone the repository to your local machine:
 
 ```sh
 git clone https://github.com/Al3ssandro-create/CS-484-HW3
