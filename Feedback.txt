@@ -1,0 +1,5 @@
+Student: Alessandro Martinolli
+
+Interesting solution. Your project is well-structured, but I would have liked to see some more documentation to take this to the next level.
+
+Final Grade: 20%
